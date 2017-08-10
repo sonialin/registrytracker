@@ -1,0 +1,36 @@
+<h1>List of Your Registries</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Location
+      </td>
+      <td>
+        Status
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registries.each do |registry| %>
+      <tr>
+        <td>
+          <%= registry.name %>
+        </td>
+        <td>
+          <%= registry.location %>
+        </td>
+        <td>
+          <% if registry.is_open %>
+            <%= link_to 'Open for Enrollment', registry %>
+          <% else %>
+            closed
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

@@ -1,0 +1,18 @@
+<h1>Edit Coordinator</h1>
+
+<%= form_for @coordinator do |f| %>
+ 
+  <p>
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </p>
+
+  <p>
+    <%= f.label :registries, 'Registries (hold ctrl to select multiple)' %><br>
+    <%= select_tag("coordinator[registry_ids][]", options_for_select(Registry.all.collect { |registry| [registry.name, registry.id] }, @coordinator.registries.collect { |registry| registry.id}), {:multiple=>true}) %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

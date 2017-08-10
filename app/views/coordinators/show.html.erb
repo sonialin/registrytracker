@@ -1,0 +1,29 @@
+<h1><%= @coordinator.name %><small>  <%= link_to 'Edit', edit_coordinator_path %></small></h1>
+<h5>Email: <%= @coordinator.email %></h5>
+<h5>Phone: <%= @coordinator.phone_number %></h5>
+
+<h2>Associated Registries</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Location
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registries.each do |registry| %>
+      <tr>
+        <td>
+          <%= registry.name %>
+        </td>
+        <td>
+          <%= registry.location %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

@@ -1,0 +1,45 @@
+<h1>List of All Participants</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Gender
+      </td>
+      <td>
+        Date of Birth
+      </td>
+      <td>
+        Enrolled at
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @participants.each do |participant| %>
+      <tr>
+        <td>
+          <%= link_to participant.name, participant %>
+        </td>
+        <td>
+          <%= participant.gender %>
+        </td>
+        <td>
+          <%= participant.date_of_birth %>
+        </td>
+        <td>
+          <% if participant.enrollments.any? %>
+            <% participant.enrollments.each do |enrollment| %>
+              <%= enrollment.registry.name %>
+              <% if enrollment != participant.enrollments.last %>
+              ,
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

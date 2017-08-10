@@ -1,0 +1,51 @@
+<h1><%= @participant.name %>  <small><%= link_to 'Edit', edit_participant_path(@participant) %></small></h1>
+<h5><%= @participant.gender %></h5>
+<h5><%= @participant.date_of_birth %></h5>
+
+<h2>Enrollments</h2>
+<% if @participant.enrollments.any? %>
+  <table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Location
+      </td>
+      <td>
+        Date of Enrollment
+      </td>
+      <td>
+        Method of Contact
+      </td>
+      <td>
+        Remarks
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @participant.enrollments.each do |enrollment| %>
+      <tr>
+        <td>
+          <%= enrollment.registry.name %>
+        </td>
+        <td>
+          <%= enrollment.registry.location %>
+        </td>
+        <td>
+          <%= enrollment.date_of_enrollment_short %>
+        </td>
+        <td>
+          <%= enrollment.contact %>
+        </td>
+        <td>
+          <%= enrollment.remarks %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 
+<% else %>
+  <p>The participant has no enrollments at the moment.</p>
+<% end %>

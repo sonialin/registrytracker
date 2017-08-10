@@ -1,0 +1,76 @@
+<h1>Enrollments at <%= @registry.name %></h1>
+
+<% if @participants.count == 0 %>
+  <p>There is no participant for this registry.</p>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>
+          Name
+        </td>
+        <td>
+          Gender
+        </td>
+        <td>
+          Date of Birth
+        </td>
+        <td>
+          Enrolled by
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @participants.each do |participant| %>
+        <tr>
+          <td>
+            <%= participant.name %>
+          </td>
+          <td>
+            <%= participant.gender %>
+          </td>
+          <td>
+            <%= participant.date_of_birth %>
+          </td>
+          <td>
+            <%= participant.enrollments.find_by(registry: @registry).coordinator.name %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table> 
+<% end %>
+
+<% if @registry.is_open %>
+
+  <h1>Add Enrollment</h1>
+
+  <%= form_for([@registry, @enrollment]) do |f| %>
+    <p>
+      <%= f.label :date_of_enrollment %><br>
+      <%= f.text_field :date_of_enrollment %>
+    </p>
+
+    <p>
+      <%= f.label :participant %><br>
+      <%= f.collection_select :participant_id, @unenrolled_participants, :id, :name, include_blank: true %>
+    </p>
+   
+    <p>
+      <%= f.label :contact %><br>
+      <%= f.text_area :contact %>
+    </p>
+
+    <p>
+      <%= f.label :remarks %><br>
+      <%= f.text_area :remarks %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+
+<% else %>
+  <p>The registry is closed for enrollment at the moment.</p>
+<% end %>

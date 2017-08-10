@@ -1,0 +1,45 @@
+<h1>List of Coordinators</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Email
+      </td>
+      <td>
+        Phone Number
+      </td>
+      <td>
+        Associated Registries
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @coordinators.each do |coordinator| %>
+      <tr>
+        <td>
+          <%= link_to coordinator.name, coordinator %>
+        </td>
+        <td>
+          <%= coordinator.email %>
+        </td>
+        <td>
+          <%= coordinator.phone_number %>
+        </td>
+        <td>
+          <% if coordinator.registries.any? %>
+            <% coordinator.registries.each do |registry| %>
+              <%= registry.name %>
+              <% if registry != coordinator.registries.last %>
+                ,
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

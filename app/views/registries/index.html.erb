@@ -1,0 +1,51 @@
+<h1>List of All Registries</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        Name
+      </td>
+      <td>
+        Location
+      </td>
+      <td>
+        Status
+      </td>
+      <td>
+        
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @registries.each do |registry| %>
+      <tr>
+        <td>
+          <%= registry.name %>
+        </td>
+        <td>
+          <%= registry.location %>
+        </td>
+        <td>
+          <% if registry.is_open %>
+            open for enrollment
+          <% else %>
+            closed
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Edit Registry', edit_registry_path(registry) %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan=4>
+        <%= link_to 'Add New Registry', new_registry_path %>
+      </td>
+    </tr>
+  </tbody>
+</table> 
+
+
+
+
